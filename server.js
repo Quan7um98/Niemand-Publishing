@@ -1,0 +1,70 @@
+const express = require('express')
+const app = express()
+const bcrypt = require('bcrypt')
+
+const jwt = require('jsonwebtoken')
+
+app.use(express.json())
+
+const users = [
+
+]
+
+app.post('/users', async (req, res) => {
+  try {
+    
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    const user = { name: req.body.name, password: hashedPassword }
+    users.push(user)
+    res.status(201).send()
+  } catch {
+    res.status(500).send()
+  }
+})
+
+app.post('/users/login', async (req, res) => {
+  const user = users.find(user => user.name = req.body.name)
+  if (user == null ) {
+    return res.status(400).send('user not found')
+  } else {
+    res.send('Not Found')
+  }
+  try {
+    if(await bcrypt.compare(req.body.password, user.password)) {
+      res.send('Login Success')
+    } else {
+      res.send('Incorrect Password')
+    }
+  } catch{
+    res.status(500).send()
+  }
+})
+
+const posts = [
+   
+    {
+        username: 'Kaden',
+        title: 'is confused'  
+      }
+    ,{ 
+        username: 'Robbie',
+        title: 'is smarter than Kaden'
+    }
+]
+
+app.get('/users',(req, res) => {
+  res.json(users)
+})
+
+app.get('/posts',(req, res) => {
+    res.json(posts)
+
+})
+
+app.post('/login',(req, res) => {
+  // Auth user  
+
+  const username = req.body.username
+})
+
+app.listen(1066)
