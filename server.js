@@ -1,42 +1,21 @@
-require('dotenv').config()
-
-const express = require('express')
+const express = require("express");
 const app = express()
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
+const PORT = 1066
+//need database below
+const userData = require("./MOCK_DATA.json");
+const graphql = require("graphql");
+const { graphqHTTP } = require("express-graphql");
+const schema = require ("/Schemas/index");
 
-app.use(express.json)
 
-const users = []
-const post = [
-    {
-        username: 'Kaden',
-        title: 'cupcakes'
-    }
-    ,{
-        username: 'Kaden',
-        title: 'Cookies'
-    }
-]
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphql: true
 
-app.get('/post', authenticateToken, (req, res) => {
-    res.json(post.filter(post => post.username === req.user.name))
+}))
 
- 
-})
+app.listen(PORT, () => {
+    console.log("Server running")
 
-//authenticate
+});
 
-function authenticateToken(req, res, next) {
-    const authHeader = req.headers['Authorization']
-    const token = authHeader &&  authHeader.split(' ')[1]
-    if (token == null) return res.sendStatus(401)
-
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403)
-        req.user = user
-        next()
-    })
-}
-
-app.listen(1066)

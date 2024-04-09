@@ -1,23 +1,18 @@
 {
-  "name": "for-the-love-of-god",
+  "name": "ok",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
-    "devStartAuth": "nodemon authServer.js"
+    "devStart": "nodemon server.js" 
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "init": "^0.1.2",
-    "jsonwebtoken": "^9.0.2"
-  },
-  "devDependencies": {
+    "express-graphql": "^0.12.0",
     "nodemon": "^3.1.0"
   }
 }
