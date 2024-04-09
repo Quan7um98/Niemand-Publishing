@@ -1,0 +1,28 @@
+GET http://localhost:1066/posts
+Authorization: Bearer
+d15bfb77356bbc99578994dcd39d4bf8947a8e1e931134244242b43ff17a24329b35d1b934a05e3fadb83dc0fc6982ff0fa0c284eab0664b635531bf7a8592b4
+
+###
+GET http://localhost:3000
+Authorization: Bearer
+05dc51702739c185e634c8740747768681cdc9ea97da961af2077967a654d98e04b17d24bf615beb267bdf2603776938eba06490262f699fd8b2ede1afbe234f
+
+###
+DELETE hhtp://localhost:3000/logout
+Content-Type: application/json
+
+{
+  "token":   
+}
+
+###
+POST http://localhost:3000/token
+Content-Type: application/json
+ {
+
+ }
+
+{
+    "token":
+    "05dc51702739c185e634c8740747768681cdc9ea97da961af2077967a654d98e04b17d24bf615beb267bdf2603776938eba06490262f699fd8b2ede1afbe234f"
+}
